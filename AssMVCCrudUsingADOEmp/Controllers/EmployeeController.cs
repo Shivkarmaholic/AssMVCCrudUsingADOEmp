@@ -67,7 +67,7 @@ namespace AssMVCCrudUsingADOEmp.Controllers
                     return RedirectToAction(nameof(Index));
                 else
                     return View();
-            }
+            } 
             catch
             {
                 return View();
