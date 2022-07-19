@@ -58,7 +58,7 @@ namespace AssMVCCrudUsingADOEmp.Controllers
         // POST: EmployeeController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, Employee e)
+        public ActionResult Edit(Employee e)
         {
             try
             {

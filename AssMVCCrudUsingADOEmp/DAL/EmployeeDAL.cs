@@ -37,12 +37,12 @@ namespace AssMVCCrudUsingADOEmp.DAL
             return employees;
         }
 
-        public Employee GetEmployeeById(int id)
+        public Employee GetEmployeeById(int pid)
         {
             Employee e1 = new Employee();
             string query = "select * from employees where eid=@id";
             cmd = new SqlCommand(query, con);
-            cmd.Parameters.AddWithValue("@id", id);
+            cmd.Parameters.AddWithValue("@id", pid);
             con.Open();
             dr = cmd.ExecuteReader();
             if (dr.HasRows)
@@ -53,9 +53,9 @@ namespace AssMVCCrudUsingADOEmp.DAL
                     e1.Name = dr["ename"].ToString();
                     e1.Salary = Convert.ToInt32(dr["esalary"]);
 
-                }
-                con.Close();
+                }                
             }
+            con.Close();
             return e1;
         }
 
@@ -68,12 +68,12 @@ namespace AssMVCCrudUsingADOEmp.DAL
             con.Open();
             int result=cmd.ExecuteNonQuery();
             con.Close();
-            return result;
+            return result; 
         }
 
         public int UpdateEmployee(Employee e)
         {
-            string query = "update employees set ename=@name esalary=@salary";
+            string query = "update employees set ename=@name, esalary=@salary where eid=@id";
             cmd = new SqlCommand(query, con);
             cmd.Parameters.AddWithValue("@id", e.Id);
             cmd.Parameters.AddWithValue("@name",e.Name);
